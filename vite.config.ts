@@ -10,8 +10,11 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@core': fileURLToPath(new URL('./src/core', import.meta.url)),
-      pages: fileURLToPath(new URL('./src/client/pages', import.meta.url))
+      '@core': fileURLToPath(new URL('./src/core/core/main.ts', import.meta.url)),
+      '@services': fileURLToPath(new URL('./src/core/services/main.ts', import.meta.url)),
+      '@watchers': fileURLToPath(new URL('./src/core/watchers/main.ts', import.meta.url)),
+      pages: fileURLToPath(new URL('./src/client/pages', import.meta.url)),
+      app: fileURLToPath(new URL('./src/client/app', import.meta.url))
     }
   }
 })

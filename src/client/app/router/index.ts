@@ -1,7 +1,6 @@
 import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 
-import { useIsAuthenticateStore } from '@core/authentication'
-
+import { useIsAuthenticateStore } from '@core'
 import HomeView from 'pages/home/index.vue'
 import AboutView from 'pages/about/index.vue'
 import UserView from 'pages/user/index.vue'

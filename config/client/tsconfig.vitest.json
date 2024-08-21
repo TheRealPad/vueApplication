@@ -9,8 +9,11 @@
 
     "paths": {
       "@/*": ["./src/*"],
-      "@/core/*": ["./src/core/*"],
-      "pages/*": ["./src/client/pages/*"]
+      "@core": ["./src/core/core/main.ts"],
+      "@services": ["./src/core/services/main.ts"],
+      "@watchers": ["./src/core/watchers/main.ts"],
+      "pages/*": ["./src/client/pages/*"],
+      "app/*": ["./src/client/app/*"]
     },
 
     "lib": [],

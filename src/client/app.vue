@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useIsAuthenticateStore } from '@core/authentication'
+import { useIsAuthenticateStore } from '@core'
 
 const isAuthenticateStore = useIsAuthenticateStore()
 </script>
@@ -17,5 +17,4 @@ const isAuthenticateStore = useIsAuthenticateStore()
   <main>
     <RouterView />
   </main>
-  <!--  <Home message="test" />-->
 </template>
