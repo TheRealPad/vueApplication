@@ -4,6 +4,8 @@
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 
+[![CI - Build and Test](https://github.com/TheRealPad/vueApplication/actions/workflows/ci.yml/badge.svg)](https://github.com/TheRealPad/vueApplication/actions/workflows/ci.yml)
+
 # vue-project
 
 Vue + Vite application using Server Side Rendering (SSR)
