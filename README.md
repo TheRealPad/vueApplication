@@ -1,61 +1,54 @@
+![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+
 # vue-project
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue + Vite application using Server Side Rendering (SSR)
 
-## Recommended IDE Setup
+## Start the project
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+### Env
+You need to create a .env file to set the environment variables with the following content:
+```dotenv
+PORT=3000
+API_URL=https://example.com
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
+### development mode
+```bash
+yarn dev
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
+### production mod
+```bash
+yarn build:server
+yarn build:client
+yarn start
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### docker
+Files are contains in ```./config/docker```
 
-```sh
-npm run test:unit
+The environment variables are directly set inside the docker-compose.{prod | dev}.yml file
+```bash
+make # start the container for Unix systems
+make stop # stop the container for Unix systems
+
+docker-compose -f ./config/docker/docker-compose.dev.yml up --build # start dev
+docker-compose -f ./config/docker/docker-compose.prod.yml up --build # start prod
 ```
 
-### Run End-to-End Tests with [Nightwatch](https://nightwatchjs.org/)
+## Test the project
 
-```sh
-# When using CI, the project must be built first.
-npm run build
-
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chrome
-npm run test:e2e -- --env chrome
-# Runs the tests of a specific file
-npm run test:e2e -- tests/e2e/example.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
+### Unit test
+```bash
+yarn test:unit
 ```
-    
-### Lint with [ESLint](https://eslint.org/)
 
-```sh
-npm run lint
+### En-to-End test
+```bash
+yarn test:e2e
 ```
