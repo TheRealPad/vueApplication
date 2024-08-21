@@ -1,0 +1,39 @@
+# Stage 1: Build the application
+FROM node:20-alpine AS build
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json (if available)
+COPY ../../package.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application code
+COPY ../.. .
+
+# Build the application
+RUN npm run build:client
+RUN npm run build:server
+
+# Stage 2: Serve the application
+FROM node:20-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy only the build output and the necessary files
+COPY --from=build /app/package.json ./
+COPY --from=build /app/package-lock.json ./
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/src/server ./src/server
+
+# Install only production dependencies
+RUN npm install --only=production
+
+# Expose the port the app runs on
+EXPOSE $PORT
+
+# Command to run the application in production
+CMD ["npm", "run", "start"]

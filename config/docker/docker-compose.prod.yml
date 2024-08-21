@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  client:
+    build:
+      context: ../..
+      dockerfile: ./config/docker/Dockerfile.prod
+    container_name: vue-project-prod
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - API_URL=https://example.com
+    restart: always

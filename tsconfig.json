@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./config/client/tsconfig.node.json"
+    },
+    {
+      "path": "./config/client/tsconfig.app.json"
+    },
+    {
+      "path": "./config/client/tsconfig.vitest.json"
+    },
+    {
+      "path": "./nightwatch/tsconfig.json"
+    }
+  ]
+}
