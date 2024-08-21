@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x] # Specify Node.js versions to test against
+        node-version: [16.x, 18.x]
 
     steps:
       - name: Checkout code
@@ -39,18 +39,18 @@ jobs:
         run: npm run build
 
       - name: Run unit tests
-        run: npm run test
+        run: npm run test:unit
 
       - name: Upload test results (if applicable)
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: test-results # Assuming your test results are stored in this directory
+          path: test-results
 
       - name: Upload coverage results (if using coverage tools)
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: coverage-results
-          path: coverage # Assuming your coverage results are stored in this directory
+          path: coverage
