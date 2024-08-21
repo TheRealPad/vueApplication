@@ -1,0 +1,51 @@
+name: CI - Build and Test
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x] # Specify Node.js versions to test against
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build
+        run: npm run build
+
+      - name: Run unit tests
+        run: npm run test
+
+      - name: Upload test results (if applicable)
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: test-results # Assuming your test results are stored in this directory
+
+      - name: Upload coverage results (if using coverage tools)
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-results
+          path: coverage # Assuming your coverage results are stored in this directory
