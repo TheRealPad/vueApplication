@@ -54,3 +54,7 @@ yarn test:unit
 ```bash
 yarn test:e2e
 ```
+
+## Features
+
+If you go to ```./src/client/components/themeSwitch``` you can find the toggle swtch from this [tiktok](https://www.tiktok.com/@codewisdom/video/7267317206025800992)
