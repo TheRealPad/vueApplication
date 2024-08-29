@@ -22,7 +22,6 @@ export const useRetrieveCountsStore = defineStore(CounterEnum.retrieveCounts, ()
     repository
       .getCounts()
       .then((data) => {
-        console.log(data)
         state.value = {
           counts: data,
           request: setRequestStateToSuccess()
