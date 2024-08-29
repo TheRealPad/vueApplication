@@ -7,10 +7,10 @@ function retrieveCountsWatcher() {
   const incrementStore = useIncrementStore()
 
   watch(
-    () => incrementStore.isRequestSuccess,
+    () => incrementStore.state.request.isRequestSuccess,
     (newValue) => {
       if (newValue) {
-        countsStore.state.counts = [...countsStore.state.counts, incrementStore.count]
+        countsStore.state.counts = [...countsStore.state.counts, incrementStore.state.count]
       }
     }
   )

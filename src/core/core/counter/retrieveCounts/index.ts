@@ -1,22 +1,28 @@
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
-import { getCounts } from '@services'
 import { retrieveCountsWatcher } from '@watchers'
 import { setRequestStateToPending } from '@utils/setRequestStateToPending'
 import { setRequestStateToSuccess } from '@utils/setRequestStateToSuccess'
 import { setRequestStateToFailure } from '@utils/setRequestStateToFailure'
+import { retrieveRepository } from '../../../services/utils'
+import { CounterEnum } from '../type'
 import type { State } from './type'
 import { defaultState } from './type'
 
-export const useRetrieveCountsStore = defineStore('retrieveCounts', () => {
+export const useRetrieveCountsStore = defineStore(CounterEnum.retrieveCounts, () => {
   const state = ref<State>(defaultState)
+  const repository = retrieveRepository()
+
+  const counts = computed(() => state.value.counts)
 
   function retrieveCounts() {
     state.value = { ...state.value, request: setRequestStateToPending() }
 
-    getCounts()
+    repository
+      .getCounts()
       .then((data) => {
+        console.log(data)
         state.value = {
           counts: data,
           request: setRequestStateToSuccess()
@@ -31,6 +37,7 @@ export const useRetrieveCountsStore = defineStore('retrieveCounts', () => {
 
   return {
     state,
-    retrieveCounts
+    retrieveCounts,
+    counts
   }
 })
