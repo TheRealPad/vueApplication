@@ -3,32 +3,34 @@ import { defineStore } from 'pinia'
 
 import { getCounts } from '@services'
 import { retrieveCountsWatcher } from '@watchers'
+import { setRequestStateToPending } from '@utils/setRequestStateToPending'
+import { setRequestStateToSuccess } from '@utils/setRequestStateToSuccess'
+import { setRequestStateToFailure } from '@utils/setRequestStateToFailure'
+import type { State } from './type'
+import { defaultState } from './type'
 
 export const useRetrieveCountsStore = defineStore('retrieveCounts', () => {
-  const counts = ref<number[]>([])
-  const isRequestPending = ref(false)
-  const isRequestSuccess = ref(false)
-  const isRequestFailure = ref(false)
+  const state = ref<State>(defaultState)
 
   function retrieveCounts() {
-    isRequestPending.value = true
-    isRequestSuccess.value = false
-    isRequestFailure.value = false
+    state.value = { ...state.value, request: setRequestStateToPending() }
 
     getCounts()
       .then((data) => {
-        counts.value = data
-        isRequestSuccess.value = true
+        state.value = {
+          counts: data,
+          request: setRequestStateToSuccess()
+        }
       })
       .catch(() => {
-        isRequestFailure.value = true
-      })
-      .finally(() => {
-        isRequestPending.value = false
+        state.value = { ...state.value, request: setRequestStateToFailure() }
       })
   }
 
   retrieveCountsWatcher()
 
-  return { counts, retrieveCounts, isRequestFailure, isRequestSuccess, isRequestPending }
+  return {
+    state,
+    retrieveCounts
+  }
 })

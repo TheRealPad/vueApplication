@@ -13,15 +13,15 @@ countsStore.retrieveCounts()
 <template>
   <div class="home">home page</div>
   <p>{{ props.message }}</p>
-  <p>increment: {{ incrementStore.count }}</p>
-  <p>increment: {{ incrementStore.isRequestPending }}</p>
-  <p>increment: {{ incrementStore.isRequestSuccess }}</p>
-  <p>increment: {{ incrementStore.isRequestFailure }}</p>
+  <p>increment: {{ incrementStore.state.count }}</p>
+  <p>increment: {{ incrementStore.state.request.isRequestPending }}</p>
+  <p>increment: {{ incrementStore.state.request.isRequestSuccess }}</p>
+  <p>increment: {{ incrementStore.state.request.isRequestFailure }}</p>
   <button @click="incrementStore.increment">Increment</button>
-  <p>Counts: {{ countsStore.isRequestPending }}</p>
-  <p>Counts: {{ countsStore.isRequestSuccess }}</p>
-  <p>Counts: {{ countsStore.isRequestFailure }}</p>
-  <li v-for="(number, index) in countsStore.counts" :key="index">
+  <p>Counts: {{ countsStore.state.request.isRequestPending }}</p>
+  <p>Counts: {{ countsStore.state.request.isRequestSuccess }}</p>
+  <p>Counts: {{ countsStore.state.request.isRequestFailure }}</p>
+  <li v-for="(number, index) in countsStore.state.counts" :key="index">
     {{ number }}
   </li>
 </template>

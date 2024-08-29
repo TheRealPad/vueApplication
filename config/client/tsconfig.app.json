@@ -15,6 +15,7 @@
       "@core": ["./src/core/core/main.ts"],
       "@services": ["./src/core/services/main.ts"],
       "@watchers": ["./src/core/watchers/main.ts"],
+      "@utils/*": ["./src/core/utils/*"],
       "pages/*": ["./src/client/pages/*"],
       "app/*": ["./src/client/app/*"]
     }

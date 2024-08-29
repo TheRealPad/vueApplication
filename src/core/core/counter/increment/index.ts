@@ -2,30 +2,26 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 import { increment as incrementCore } from '@services'
+import { setRequestStateToPending } from '@utils/setRequestStateToPending'
+import { setRequestStateToSuccess } from '@utils/setRequestStateToSuccess'
+import { setRequestStateToFailure } from '@utils/setRequestStateToFailure'
+import type { State } from './type'
+import { defaultState } from './type'
 
 export const useIncrementStore = defineStore('increment', () => {
-  const count = ref(0)
-  const isRequestPending = ref(false)
-  const isRequestSuccess = ref(false)
-  const isRequestFailure = ref(false)
+  const state = ref<State>(defaultState)
 
   function increment(data: number) {
-    isRequestPending.value = true
-    isRequestSuccess.value = false
-    isRequestFailure.value = false
+    state.value = { ...state.value, request: setRequestStateToPending() }
 
-    incrementCore(count.value)
+    incrementCore(state.value.count)
       .then((data) => {
-        count.value = data
-        isRequestSuccess.value = true
+        state.value = { ...state.value, count: data, request: setRequestStateToSuccess() }
       })
       .catch(() => {
-        isRequestFailure.value = true
-      })
-      .finally(() => {
-        isRequestPending.value = false
+        state.value = { ...state.value, request: setRequestStateToFailure() }
       })
   }
 
-  return { count, increment, isRequestFailure, isRequestSuccess, isRequestPending }
+  return { state, increment }
 })

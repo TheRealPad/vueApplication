@@ -10,7 +10,7 @@ function retrieveCountsWatcher() {
     () => incrementStore.isRequestSuccess,
     (newValue) => {
       if (newValue) {
-        countsStore.counts = [...countsStore.counts, incrementStore.count]
+        countsStore.state.counts = [...countsStore.state.counts, incrementStore.count]
       }
     }
   )
