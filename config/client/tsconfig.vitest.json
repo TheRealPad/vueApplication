@@ -18,6 +18,6 @@
     },
 
     "lib": [],
-    "types": ["node", "jsdom"]
+    "types": ["vitest/globals", "node", "jsdom"]
   }
 }
