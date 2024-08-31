@@ -15,6 +15,7 @@ const isAuthenticateStore = useIsAuthenticateStore()
     <RouterLink to="/about">Go to About</RouterLink>
     <RouterLink to="/user">Go to User</RouterLink>
     <RouterLink to="/badRoute">Bad route</RouterLink>
+    <RouterLink to="/pokemon">Pokemon route</RouterLink>
   </nav>
   <main>
     <RouterView />

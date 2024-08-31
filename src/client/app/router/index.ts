@@ -3,6 +3,7 @@ import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 import { useIsAuthenticateStore } from '@core'
 import HomeView from 'pages/home/index.vue'
 import AboutView from 'pages/about/index.vue'
+import PokemonView from 'pages/pokemon/index.vue'
 import UserView from 'pages/user/index.vue'
 import NotFoundView from 'pages/notFound/index.vue'
 
@@ -11,6 +12,7 @@ const isSSR = typeof window === 'undefined'
 const routes = [
   { path: '/', component: HomeView, props: { message: 'Oui' } },
   { path: '/about', component: AboutView, props: { message: 'Non' } },
+  { path: '/pokemon', component: PokemonView, props: {} },
   { path: '/user', component: UserView, props: { message: 'Non' }, meta: { requiresAuth: true } },
   { path: '/:pathMatch(.*)*', component: NotFoundView }
 ]

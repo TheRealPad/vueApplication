@@ -1,0 +1,68 @@
+.card {
+  position: relative;
+  width: 359px;
+  height: 500px;
+  perspective: 1000px;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: contain, contain;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+  transition: transform 0.3s ease-in-out;
+  //background-image: url("https://images.pokemontcg.io/pgo/24_hires.png"), url("https://images.pokemontcg.io/pgo");
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.selected {
+  transform: scale(1.5) rotateY(360deg);
+  z-index: 9999;
+}
+
+.cell {
+  position: relative;
+  height: 34%;
+  width: 33%;
+  z-index: 9999;
+}
+
+.content:has(.cell:nth-child(1):hover) {
+  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * 1deg)) rotateX(calc(var(--rotation) * -1deg));
+}
+
+.content:has(.cell:nth-child(2):hover) {
+  transform: perspective(calc(var(--perspective) * 1px)) rotateX(calc(var(--rotation) * -1deg));
+}
+
+.content:has(.cell:nth-child(3):hover) {
+  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * -1deg)) rotateX(calc(var(--rotation) * -1deg));
+}
+
+.content:has(.cell:nth-child(4):hover) {
+  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * 1deg));
+}
+
+.content:has(.cell:nth-child(6):hover) {
+  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * -1deg));
+}
+
+.content:has(.cell:nth-child(7):hover) {
+  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * 1deg)) rotateX(calc(var(--rotation) * 1deg));
+}
+
+.content:has(.cell:nth-child(8):hover) {
+  transform: perspective(calc(var(--perspective) * 1px)) rotateX(calc(var(--rotation) * 1deg));
+}
+
+.content:has(.cell:nth-child(9):hover) {
+  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * -1deg)) rotateX(calc(var(--rotation) * 1deg));
+}

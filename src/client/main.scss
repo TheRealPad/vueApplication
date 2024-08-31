@@ -36,6 +36,11 @@
   --section-gap: 160px;
 }
 
+:root {
+  --perspective: 1000;
+  --rotation: 10;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);
