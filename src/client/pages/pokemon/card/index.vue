@@ -14,15 +14,7 @@ const props = defineProps<Props>()
         backgroundImage: `url(${props.pokemon.images.large})`
       }"
     >
-      <div class="cell" />
-      <div class="cell" />
-      <div class="cell" />
-      <div class="cell" />
-      <div class="cell" />
-      <div class="cell" />
-      <div class="cell" />
-      <div class="cell" />
-      <div class="cell" />
+      <div class="cell" v-for="n in 400" v-bind:key="n" />
     </div>
   </div>
 </template>

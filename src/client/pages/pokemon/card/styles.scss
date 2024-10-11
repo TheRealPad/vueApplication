@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 .card {
   position: relative;
   width: 359px;
@@ -28,41 +30,41 @@
   z-index: 9999;
 }
 
+.image {
+  width: 100%;
+  height: 100%;
+}
+
 .cell {
   position: relative;
-  height: 34%;
-  width: 33%;
+  height: 5%;
+  width: 5%;
   z-index: 9999;
 }
 
-.content:has(.cell:nth-child(1):hover) {
-  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * 1deg)) rotateX(calc(var(--rotation) * -1deg));
-}
+$columns: 20;
+$rows: 20;
+$total-elements: $columns * $rows;
+$mid-column: calc($columns / 2);
+$mid-row: calc($rows / 2);
 
-.content:has(.cell:nth-child(2):hover) {
-  transform: perspective(calc(var(--perspective) * 1px)) rotateX(calc(var(--rotation) * -1deg));
-}
+@for $i from 1 through 1000 {
+  .content:has(.cell:nth-child(#{$i}):hover) {
+    $row: math.ceil(calc($i / $columns));
+    $col: if($i % $columns == 0, $columns, $i % $columns);
 
-.content:has(.cell:nth-child(3):hover) {
-  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * -1deg)) rotateX(calc(var(--rotation) * -1deg));
-}
-
-.content:has(.cell:nth-child(4):hover) {
-  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * 1deg));
-}
-
-.content:has(.cell:nth-child(6):hover) {
-  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * -1deg));
-}
-
-.content:has(.cell:nth-child(7):hover) {
-  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * 1deg)) rotateX(calc(var(--rotation) * 1deg));
-}
-
-.content:has(.cell:nth-child(8):hover) {
-  transform: perspective(calc(var(--perspective) * 1px)) rotateX(calc(var(--rotation) * 1deg));
-}
-
-.content:has(.cell:nth-child(9):hover) {
-  transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc(var(--rotation) * -1deg)) rotateX(calc(var(--rotation) * 1deg));
+    @if $row <= $mid-row and $col <= $mid-column {
+      /* Top-left quadrant */
+      transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc((#{$mid-column} - #{$col}) * 1deg)) rotateX(calc((#{$mid-row} - #{$row}) * -1deg));
+    } @else if $row <= $mid-row and $col > $mid-column {
+      /* Top-right quadrant */
+      transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc((#{$col} - #{$mid-column}) * -1deg)) rotateX(calc((#{$mid-row} - #{$row}) * -1deg));
+    } @else if $row > $mid-row and $col <= $mid-column {
+      /* Bottom-left quadrant */
+      transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc((#{$mid-column} - #{$col}) * 1deg)) rotateX(calc((#{$row} - #{$mid-row}) * 1deg));
+    } @else if $row > $mid-row and $col > $mid-column {
+      /* Bottom-right quadrant */
+      transform: perspective(calc(var(--perspective) * 1px)) rotateY(calc((#{$col} - #{$mid-column}) * -1deg)) rotateX(calc((#{$row} - #{$mid-row}) * 1deg));
+    }
+  }
 }

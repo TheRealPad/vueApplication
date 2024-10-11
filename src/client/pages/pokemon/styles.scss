@@ -9,3 +9,25 @@
   gap: 1rem;
 }
 
+.card {
+  position: relative;
+  width: 359px;
+  height: 500px;
+  perspective: 1000px;
+  background-color: red;
+}
+
+.selected {
+  background-color: transparent;
+}
+
+.selectedCard {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  perspective: 1000px;
+  background-color: blue;
+  z-index: 9999;
+}
