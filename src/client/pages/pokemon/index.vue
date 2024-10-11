@@ -11,12 +11,15 @@ const props = defineProps<Props>()
 const container = ref<HTMLElement | null>(null)
 const pokemonList = data as Pokemon[]
 const selectedPokemon = ref<string | null>(null)
+const lastSelectedPokemon = ref<string | null>(null)
 
 const selectPokemon = (pokemon: Pokemon) => {
   if (!selectedPokemon.value || selectedPokemon.value !== pokemon.id) {
     selectedPokemon.value = pokemon.id
+    lastSelectedPokemon.value = null
   } else {
     selectedPokemon.value = null
+    lastSelectedPokemon.value = pokemon.id
   }
 }
 
@@ -24,6 +27,7 @@ const handleClickOutside = (event: MouseEvent) => {
   const target = event.target as HTMLElement
   if (!target.className.includes('content')) {
     selectedPokemon.value = null
+    lastSelectedPokemon.value = null
   }
 }
 
@@ -45,7 +49,14 @@ onUnmounted(() => {
         :key="index"
         @click="selectPokemon(pokemon)"
       >
-        <Card :pokemon="pokemon" :is-selected="selectedPokemon === pokemon.id" />
+        <div class="card" :class="{ selectedCard: selectedPokemon === pokemon.id }">
+          <Card
+            :pokemon="pokemon"
+            :is-selected="selectedPokemon === pokemon.id"
+            :is-last-selected="lastSelectedPokemon === pokemon.id"
+          />
+        </div>
+        <div class="card" v-if="selectedPokemon === pokemon.id"></div>
       </div>
     </div>
   </div>

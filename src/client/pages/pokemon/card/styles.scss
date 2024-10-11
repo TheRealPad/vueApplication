@@ -2,8 +2,8 @@
 
 .card {
   position: relative;
-  width: 359px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   perspective: 1000px;
 }
 
@@ -23,11 +23,12 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+
 }
 
-.selected {
-  transform: scale(1.5) rotateY(360deg);
-  z-index: 9999;
+.isSelected {
+  //transform: scale(1.5) rotateY(360deg);
+  //z-index: 9999;
 }
 
 .image {
